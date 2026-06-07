@@ -1,10 +1,20 @@
 from view_iniciar import ViewIniciar
 from registro_atendimento_controller import RegistroAtendimentoController
+from sistema_clinicas import SistemaClinicas
+from cadastrar_clinica_controller import CadastrarClinicaController
+from cadastrar_paciente_controller import CadastrarPacienteController
 
 class IniciarController:
     def __init__(self):
         self.__view_iniciar = ViewIniciar()
-        self.__registro_atendimento_controller = RegistroAtendimentoController()
+        self.__sistema_clinicas = SistemaClinicas()
+        self.__cadastrar_clinica_controller = CadastrarClinicaController(self.__sistema_clinicas)
+        self.__cadastrar_paciente_controller = CadastrarPacienteController(self.__sistema_clinicas)
+        self.__registro_atendimento_controller = RegistroAtendimentoController(
+            self.__sistema_clinicas,
+            self.__cadastrar_clinica_controller,
+            self.__cadastrar_paciente_controller,
+        )
 
     def iniciar_atendimento(self):
         while True:
@@ -13,11 +23,14 @@ class IniciarController:
                 idade = self.__ler_idade()
                 if self.valida_idade(idade):
                     self.__registro_atendimento_controller.iniciar_registro()
-                    break
                 else:
                     # menor de idade: barra e reinicia o menu
                     self.__view_iniciar.invalida_atendimento()
             elif escolha == '5':
+                self.__cadastrar_clinica_controller.listar()
+            elif escolha == '6':
+                self.__cadastrar_paciente_controller.listar()
+            elif escolha == '7':
                 break
             else:
                 self.__view_iniciar.opcao_invalida()

@@ -1,7 +1,4 @@
 from view_registro_atendimento import ViewRegistroAtendimento
-from cadastrar_clinica_controller import CadastrarClinicaController
-from sistema_clinicas import SistemaClinicas
-from cadastrar_paciente_controller import CadastrarPacienteController
 #from view_cadastrar_profissional import CadastrarProfissionalController
 from atendimento import Atendimento
 from tipo_atendimento import TipoAtendimento
@@ -9,11 +6,11 @@ from tipo_atendimento import TipoAtendimento
 
 class RegistroAtendimentoController:
 
-    def __init__(self):
+    def __init__(self, sistema_clinicas, cadastrar_clinica_controller, cadastrar_paciente_controller):
         self.__view_registro_atendimento = ViewRegistroAtendimento()
-        self.__sistema_clinicas = SistemaClinicas()
-        self.__cadastrar_clinica_controller = CadastrarClinicaController(self.__sistema_clinicas)
-        self.__cadastrar_paciente_controller = CadastrarPacienteController()
+        self.__sistema_clinicas = sistema_clinicas
+        self.__cadastrar_clinica_controller = cadastrar_clinica_controller
+        self.__cadastrar_paciente_controller = cadastrar_paciente_controller
         #self.__atendimentos = []
 
     def iniciar_registro(self):

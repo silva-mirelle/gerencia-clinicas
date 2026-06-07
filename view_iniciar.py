@@ -5,7 +5,9 @@ class ViewIniciar:
         print("2 - Cadastrar paciente")
         print("3 - Cadastrar clínica")
         print("4 - Cadastrar profissional de saúde")
-        print("5 - Encerrar")
+        print("5 - Listar clinicas")
+        print("6 - Listar pacientes")
+        print("7 - Encerrar")
         return input("Escolha um numero: ")
     
     def idade_user(self):

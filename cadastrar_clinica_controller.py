@@ -17,3 +17,8 @@ class CadastrarClinicaController:
     
     def add_sistema(self, clinica):
         self.__sistema_clinicas.registrar_clinica(clinica)
+
+    def listar(self):
+        linhas = [f"{c.nome} | {c.localizacao} | {c.descricao}"
+                  for c in self.__sistema_clinicas.clinicas]
+        self.__view_cadastrar_clinica.listar_clinicas(linhas)

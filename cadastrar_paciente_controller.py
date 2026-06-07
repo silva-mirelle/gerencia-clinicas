@@ -2,8 +2,9 @@ from view_cadastrar_paciente import ViewCadastrarPaciente
 from paciente import Paciente
 
 class CadastrarPacienteController:
-    def __init__(self):
+    def __init__(self, sistema_clinicas):
         self.__view_cadastrar_paciente = ViewCadastrarPaciente()
+        self.__sistema_clinicas = sistema_clinicas
     
     def cadastrar(self, clinica, nome_paciente):
         nome = nome_paciente
@@ -20,3 +21,13 @@ class CadastrarPacienteController:
             self.__view_cadastrar_paciente.erro_apenas_numeros()
             valor = metodo_view()
         return valor
+
+    def listar(self):
+        linhas = []
+        for clinica in self.__sistema_clinicas.clinicas:
+            for paciente in clinica.pacientes:
+                linhas.append(
+                    f"{paciente.nome} | cel: {paciente.celular} | cpf: {paciente.cpf} "
+                    f"| nasc: {paciente.data_nascimento} | clinica: {clinica.nome}"
+                )
+        self.__view_cadastrar_paciente.listar_pacientes(linhas)
