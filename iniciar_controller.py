@@ -10,21 +10,29 @@ class IniciarController:
         while True:
             escolha = self.__view_iniciar.menu()
             if escolha == '1':
-                # VALIDA IDADE DO PACIENTE 
-                idade = self.__view_iniciar.idade_user()
-    
-                # SEGUE COM ATENDIMENTO IF TRUE - IMPLEMENTAR NO PROX COMMIT
+                idade = self.__ler_idade()
                 if self.valida_idade(idade):
                     self.__registro_atendimento_controller.iniciar_registro()
-                    break 
-                else: 
-                    # INVALIDA ATENDIMENTO E REINICIA MENU
+                    break
+                else:
+                    # menor de idade: barra e reinicia o menu
                     self.__view_iniciar.invalida_atendimento()
-            if escolha=='5':
-                break 
-         
+            elif escolha == '5':
+                break
+            else:
+                self.__view_iniciar.opcao_invalida()
+
+    def __ler_idade(self):
+        # repete ate o usuario digitar um numero inteiro valido
+        while True:
+            idade = self.__view_iniciar.idade_user()
+            try:
+                return int(idade)
+            except ValueError:
+                self.__view_iniciar.erro_idade_invalida()
+
     def valida_idade(self, idade: int):
-        return True if int(idade)>18 else False
+        return idade > 18
     
     def registrar_atendimento(self):
         atendimento = Atendimento()

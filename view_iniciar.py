@@ -14,3 +14,9 @@ class ViewIniciar:
 
     def invalida_atendimento(self):
         print("MENORES PRECISAM QUE UM RESPONSÁVEL REGISTRE O ATENDIMENTO")
+
+    def erro_idade_invalida(self):
+        print("Idade invalida: digite apenas numeros inteiros.")
+
+    def opcao_invalida(self):
+        print("Opcao invalida. Escolha um numero do menu.")
