@@ -22,6 +22,8 @@ class ViewIniciar:
         print("15 - Listar profissionais")
         print("16 - Alterar profissional")
         print("17 - Excluir profissional")
+        print("18 - Registrar procedimento")
+        print("19 - Listar procedimentos")
         print("0 - Encerrar")
         return input("Escolha um numero: ")
 
