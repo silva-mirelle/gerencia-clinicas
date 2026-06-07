@@ -19,6 +19,9 @@ class ViewIniciar:
         print("12 - Listar tipos de atendimento")
         print("13 - Alterar tipo de atendimento")
         print("14 - Excluir tipo de atendimento")
+        print("15 - Listar profissionais")
+        print("16 - Alterar profissional")
+        print("17 - Excluir profissional")
         print("0 - Encerrar")
         return input("Escolha um numero: ")
 

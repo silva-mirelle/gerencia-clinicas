@@ -8,6 +8,7 @@ from sistema_clinicas import SistemaClinicas
 from cadastrar_clinica_controller import CadastrarClinicaController
 from cadastrar_paciente_controller import CadastrarPacienteController
 from cadastrar_tipo_atendimento_controller import CadastrarTipoAtendimentoController
+from cadastrar_profissional_controller import CadastrarProfissionalController
 
 
 class IniciarController:
@@ -19,6 +20,7 @@ class IniciarController:
         self.__cadastrar_clinica_controller = CadastrarClinicaController(self.__sistema_clinicas)
         self.__cadastrar_paciente_controller = CadastrarPacienteController(self.__sistema_clinicas)
         self.__cadastrar_tipo_atendimento_controller = CadastrarTipoAtendimentoController(self.__sistema_clinicas)
+        self.__cadastrar_profissional_controller = CadastrarProfissionalController(self.__sistema_clinicas)
         # o controller de registro recebe o sistema + os controllers ja prontos
         self.__registro_atendimento_controller = RegistroAtendimentoController(
             self.__sistema_clinicas,
@@ -38,6 +40,8 @@ class IniciarController:
                 else:
                     # menor de idade: barra e reinicia o menu
                     self.__view_iniciar.invalida_atendimento()
+            elif escolha == '4':
+                self.__cadastrar_profissional_controller.cadastrar()
             elif escolha == '5':
                 self.__cadastrar_clinica_controller.listar()
             elif escolha == '6':
@@ -58,6 +62,12 @@ class IniciarController:
                 self.__cadastrar_tipo_atendimento_controller.alterar()
             elif escolha == '14':
                 self.__cadastrar_tipo_atendimento_controller.excluir()
+            elif escolha == '15':
+                self.__cadastrar_profissional_controller.listar()
+            elif escolha == '16':
+                self.__cadastrar_profissional_controller.alterar()
+            elif escolha == '17':
+                self.__cadastrar_profissional_controller.excluir()
             elif escolha == '0':
                 break  # sai do laco -> metodo retorna -> programa encerra
             else:
