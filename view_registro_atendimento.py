@@ -35,3 +35,30 @@ class ViewRegistroAtendimento:
 
     def sucesso_registro(self):
         print("Atendimento registrado com sucesso.")
+
+    def selecionar_atendimento(self, linhas):
+        # atendimentos numerados (nao tem nome); devolve o numero digitado
+        print("---- ATENDIMENTOS ----")
+        for i, linha in enumerate(linhas):
+            print(f"{i + 1} - {linha}")
+        return input("Numero do atendimento: ")
+
+    def sem_atendimentos(self):
+        print("Nenhum atendimento registrado.")
+
+    def selecao_invalida(self):
+        print("Selecao invalida.")
+
+    def listar_atendimentos(self, linhas):
+        # recebe linhas ja prontas do controller e so imprime
+        print("---- ATENDIMENTOS ----")
+        if not linhas:
+            print("Nenhum atendimento registrado.")
+        for linha in linhas:
+            print(f"- {linha}")
+
+    def sucesso_alteracao(self):
+        print("Atendimento alterado com sucesso.")
+
+    def sucesso_exclusao(self):
+        print("Atendimento excluido com sucesso.")

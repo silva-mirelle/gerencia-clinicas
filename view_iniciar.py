@@ -28,6 +28,9 @@ class ViewIniciar:
         print("21 - Relatorio: procedimentos mais caros e mais baratos")
         print("22 - Registrar pagamento")
         print("23 - Listar pagamentos")
+        print("24 - Listar atendimentos")
+        print("25 - Alterar atendimento")
+        print("26 - Excluir atendimento")
         print("0 - Encerrar")
         return input("Escolha um numero: ")
 

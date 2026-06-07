@@ -53,6 +53,9 @@ class SistemaClinicas:
     def registrar_atendimento(self, atendimento):
         self.__atendimentos.append(atendimento)
 
+    def remover_atendimento(self, atendimento):
+        self.__atendimentos.remove(atendimento)
+
     # ---- RELATORIOS (so computacao sobre os dados; quem exibe e o controller/view) ----
 
     def procedimentos_mais_realizados(self):

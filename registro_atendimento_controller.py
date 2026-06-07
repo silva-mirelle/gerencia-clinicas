@@ -92,3 +92,50 @@ class RegistroAtendimentoController:
                 return float(self.__view_registro_atendimento.valor())
             except ValueError:
                 self.__view_registro_atendimento.erro_valor_invalido()
+
+    def listar(self):
+        # LISTAR: todos os atendimentos com dados + valor restante
+        linhas = [
+            f"{a.paciente.nome} | {a.clinica.nome} | prof: {a.profissional.nome} "
+            f"| {a.data} {a.horario_inicio}-{a.horario_fim} | {a.tipo_atendimento.nome} "
+            f"| valor: {a.valor} | restante: {a.calcular_valor_restante()}"
+            for a in self.__sistema_clinicas.atendimentos
+        ]
+        self.__view_registro_atendimento.listar_atendimentos(linhas)
+
+    def alterar(self):
+        # ALTERAR: escolhe o atendimento e atualiza data, horarios e valor.
+        # clinica/paciente/profissional sao vinculos -> ficam fixos.
+        atendimento = self.__selecionar_atendimento()
+        if atendimento is None:
+            return
+        atendimento.data = self.__view_registro_atendimento.data_atendimento()
+        atendimento.horario_inicio = self.__view_registro_atendimento.horario_inicio()
+        atendimento.horario_fim = self.__view_registro_atendimento.horario_fim()
+        atendimento.valor = self.__ler_valor()
+        self.__view_registro_atendimento.sucesso_alteracao()
+
+    def excluir(self):
+        # EXCLUIR: escolhe o atendimento e remove do sistema
+        atendimento = self.__selecionar_atendimento()
+        if atendimento is None:
+            return
+        self.__sistema_clinicas.remover_atendimento(atendimento)
+        self.__view_registro_atendimento.sucesso_exclusao()
+
+    def __selecionar_atendimento(self):
+        # selecao numerada (atendimento nao tem nome); retorna o objeto ou None
+        atendimentos = self.__sistema_clinicas.atendimentos
+        if not atendimentos:
+            self.__view_registro_atendimento.sem_atendimentos()
+            return None
+        linhas = [f"{a.paciente.nome} | {a.clinica.nome} | {a.data}" for a in atendimentos]
+        escolha = self.__view_registro_atendimento.selecionar_atendimento(linhas)
+        if not escolha.isdigit(): # garante que é um digito
+            self.__view_registro_atendimento.selecao_invalida()
+            return None
+        indice = int(escolha) - 1
+        if indice < 0 or indice >= len(atendimentos): # garante que o digit não estoura o intervalo da lista atendimentos
+            self.__view_registro_atendimento.selecao_invalida()
+            return None
+        return atendimentos[indice]

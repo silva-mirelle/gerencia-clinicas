@@ -86,6 +86,12 @@ class IniciarController:
                 self.__registro_pagamento_controller.registrar()
             elif escolha == '23':
                 self.__registro_pagamento_controller.listar()
+            elif escolha == '24':
+                self.__registro_atendimento_controller.listar()
+            elif escolha == '25':
+                self.__registro_atendimento_controller.alterar()
+            elif escolha == '26':
+                self.__registro_atendimento_controller.excluir()
             elif escolha == '0':
                 break  # sai do laco -> metodo retorna -> programa encerra
             else:
