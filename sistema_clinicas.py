@@ -6,6 +6,7 @@ class SistemaClinicas:
         self.__clinicas = []           # lista de objetos Clinica
         self.__tipos_atendimento = []  # lista de objetos TipoAtendimento
         self.__profissionais = []      # lista de objetos ProfissionalSaude
+        self.__atendimentos = []       # lista de objetos Atendimento (registros)
 
     @property
     def clinicas(self):
@@ -44,3 +45,10 @@ class SistemaClinicas:
 
     def remover_profissional(self, profissional):
         self.__profissionais.remove(profissional)
+
+    @property
+    def atendimentos(self):
+        return self.__atendimentos
+
+    def registrar_atendimento(self, atendimento):
+        self.__atendimentos.append(atendimento)

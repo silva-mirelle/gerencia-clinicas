@@ -1,6 +1,6 @@
 # CONTROLLER de registro de atendimento (MVC).
 # Orquestra o fluxo de marcar um atendimento: valida/cadastra clinica e paciente,
-# coleta os dados, e (futuramente) cria o objeto Atendimento.
+# valida o profissional, coleta os dados, cria o Atendimento e guarda no sistema.
 from view_registro_atendimento import ViewRegistroAtendimento
 #from view_cadastrar_profissional import CadastrarProfissionalController
 from atendimento import Atendimento
@@ -19,20 +19,28 @@ class RegistroAtendimentoController:
         #self.__atendimentos = []
 
     def iniciar_registro(self):
-        # passo a passo do atendimento: clinica -> paciente -> dados
+        # passo a passo: clinica -> paciente -> profissional -> dados -> valor -> cria
         clinica = self.valida_clinica()
         paciente = self.valida_paciente(clinica)
-        dados = self.coletar_dados_atendimento()
 
-        # BLOQUEIO: criar o Atendimento exige um ProfissionalSaude, que depende
-        # do cadastro de profissional (responsabilidade da Mikaely).
-        # Quando o modulo de profissional existir:
-        #   profissional = self.valida_profissional(clinica)
-        #   atendimento = Atendimento(clinica, paciente, profissional,
-        #                             dados["data"], dados["horario_inicio"],
-        #                             dados["horario_fim"], dados["tipo_atendimento"],
-        #                             valor=0)
-        self.__view_registro_atendimento.aguardando_profissional()
+        profissional = self.valida_profissional()
+        if profissional is None:
+            # regra: o profissional precisa estar cadastrado antes (menu opcao 4).
+            # sem profissional, aborta o registro e volta ao menu.
+            self.__view_registro_atendimento.profissional_nao_cadastrado()
+            return
+
+        dados = self.coletar_dados_atendimento()
+        valor = self.__ler_valor()
+
+        # cria o Atendimento com tudo coletado e guarda no sistema
+        atendimento = Atendimento(
+            clinica, paciente, profissional,
+            dados["data"], dados["horario_inicio"], dados["horario_fim"],
+            dados["tipo_atendimento"], valor,
+        )
+        self.__sistema_clinicas.registrar_atendimento(atendimento)
+        self.__view_registro_atendimento.sucesso_registro()
 
     def coletar_dados_atendimento(self):
         # coleta os campos proprios do atendimento via tela e devolve um dict pronto
@@ -67,3 +75,20 @@ class RegistroAtendimentoController:
                 return paciente
         paciente = self.__cadastrar_paciente_controller.cadastrar(clinica, nome_paciente)
         return paciente
+
+    def valida_profissional(self):
+        # o profissional precisa JA estar cadastrado (cadastro e via menu, opcao 4).
+        # procura pelo nome na lista global; retorna o OBJETO ou None se nao achar.
+        nome_profissional = self.__view_registro_atendimento.nome_profissional()
+        for profissional in self.__sistema_clinicas.profissionais:
+            if nome_profissional == profissional.nome:
+                return profissional
+        return None
+
+    def __ler_valor(self):
+        # le o valor do atendimento e converte pra float; repete se nao for numero
+        while True:
+            try:
+                return float(self.__view_registro_atendimento.valor())
+            except ValueError:
+                self.__view_registro_atendimento.erro_valor_invalido()

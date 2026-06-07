@@ -27,7 +27,11 @@ class ViewRegistroAtendimento:
     def valor(self):
         return input("Valor do atendimento: ")
 
-    def aguardando_profissional(self):
-        # mensagem temporaria: o fluxo para aqui ate existir o cadastro de profissional
-        print("Dados do atendimento coletados (clinica, paciente, data, horario, tipo).")
-        print("Proximo passo: profissional - aguardando o modulo de cadastro de profissional.")
+    def profissional_nao_cadastrado(self):
+        print("Profissional nao cadastrado. Cadastre o profissional (opcao 4) antes do atendimento.")
+
+    def erro_valor_invalido(self):
+        print("Valor invalido: digite um numero (ex.: 150 ou 150.50).")
+
+    def sucesso_registro(self):
+        print("Atendimento registrado com sucesso.")
