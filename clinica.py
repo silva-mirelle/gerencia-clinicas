@@ -38,3 +38,6 @@ class Clinica:
     @pacientes.setter
     def pacientes(self, paciente: Paciente):
         self.__pacientes.append(paciente)
+
+    def remover_paciente(self, paciente):
+        self.__pacientes.remove(paciente)

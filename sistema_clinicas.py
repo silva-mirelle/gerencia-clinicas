@@ -13,3 +13,6 @@ class SistemaClinicas:
     def registrar_clinica(self, clinica):
         self.__clinicas.append(clinica)
         print("----CLINICA REGISTRADA COM SUCESSO----")
+
+    def remover_clinica(self, clinica):
+        self.__clinicas.remove(clinica)

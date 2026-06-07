@@ -22,3 +22,27 @@ class CadastrarClinicaController:
         linhas = [f"{c.nome} | {c.localizacao} | {c.descricao}"
                   for c in self.__sistema_clinicas.clinicas]
         self.__view_cadastrar_clinica.listar_clinicas(linhas)
+
+    def alterar(self):
+        clinica = self.__buscar_clinica()
+        if clinica is None:
+            return
+        dados = self.__view_cadastrar_clinica.pegar_dados_alteracao()
+        clinica.localizacao = dados["localizacao"]
+        clinica.descricao = dados["descricao"]
+        self.__view_cadastrar_clinica.sucesso_alteracao()
+
+    def excluir(self):
+        clinica = self.__buscar_clinica()
+        if clinica is None:
+            return
+        self.__sistema_clinicas.remover_clinica(clinica)
+        self.__view_cadastrar_clinica.sucesso_exclusao()
+
+    def __buscar_clinica(self):
+        nome = self.__view_cadastrar_clinica.pedir_nome()
+        for clinica in self.__sistema_clinicas.clinicas:
+            if clinica.nome == nome:
+                return clinica
+        self.__view_cadastrar_clinica.nao_encontrada()
+        return None

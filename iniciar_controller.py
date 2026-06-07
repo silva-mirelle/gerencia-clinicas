@@ -31,6 +31,14 @@ class IniciarController:
             elif escolha == '6':
                 self.__cadastrar_paciente_controller.listar()
             elif escolha == '7':
+                self.__cadastrar_clinica_controller.alterar()
+            elif escolha == '8':
+                self.__cadastrar_clinica_controller.excluir()
+            elif escolha == '9':
+                self.__cadastrar_paciente_controller.alterar()
+            elif escolha == '10':
+                self.__cadastrar_paciente_controller.excluir()
+            elif escolha == '0':
                 break
             else:
                 self.__view_iniciar.opcao_invalida()

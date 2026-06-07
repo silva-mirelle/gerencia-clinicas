@@ -1,8 +1,10 @@
 class ViewCadastrarPaciente:
     
-    def celular(self):
-        print("VAMOS CADASTRAR O PACIENTE - JÁ TEMOS O NOME")
+    def cabecalho_cadastro(self):
+        print("VAMOS CADASTRAR O PACIENTE - JA TEMOS O NOME")
         print("---- AGORA INDIQUE ----")
+
+    def celular(self):
         return input("Celular (somente numeros): ")
 
     def cpf(self):
@@ -20,3 +22,15 @@ class ViewCadastrarPaciente:
             print("Nenhum paciente cadastrado.")
         for linha in linhas:
             print(f"- {linha}")
+
+    def pedir_nome(self):
+        return input("Nome do paciente: ")
+
+    def nao_encontrado(self):
+        print("Paciente nao encontrado.")
+
+    def sucesso_alteracao(self):
+        print("Paciente alterado com sucesso.")
+
+    def sucesso_exclusao(self):
+        print("Paciente excluido com sucesso.")
