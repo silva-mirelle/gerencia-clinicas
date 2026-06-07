@@ -1,3 +1,4 @@
+# MODEL. Pagamento via PIX - E-UM Pagamento (heranca) + CPF do pagador.
 from pagamento import Pagamento
 
 

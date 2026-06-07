@@ -1,3 +1,5 @@
+# MODEL (entidade). Procedimento realizado num atendimento: descricao, custo e o
+# profissional responsavel por executa-lo.
 class Procedimento:
     def __init__(self, descricao, custo, profissional):
         self.__descricao = descricao

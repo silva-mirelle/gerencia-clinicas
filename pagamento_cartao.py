@@ -1,3 +1,5 @@
+# MODEL. Pagamento via cartao de credito - E-UM Pagamento (heranca) + numero do
+# cartao e bandeira.
 from pagamento import Pagamento
 
 

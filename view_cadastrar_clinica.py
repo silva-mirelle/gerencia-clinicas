@@ -1,5 +1,6 @@
+# VIEW (Tela) do cadastro de clinica (MVC). So entrada/saida.
 class ViewCadastrarClinica:
-    
+
     def localizacao(self):
         print("VAMOS CADASTRAR A CLÍNICA - JÁ TEMOS O NOME")
         print("AGORA INDIQUE O RESTO")
@@ -9,6 +10,7 @@ class ViewCadastrarClinica:
         return input("Descrição da clinica: ")
 
     def listar_clinicas(self, linhas):
+        # recebe linhas ja prontas do controller e so imprime
         print("---- CLINICAS ----")
         if not linhas:
             print("Nenhuma clinica cadastrada.")
@@ -16,9 +18,11 @@ class ViewCadastrarClinica:
             print(f"- {linha}")
 
     def pedir_nome(self):
+        # usado para selecionar a clinica em alterar/excluir
         return input("Nome da clinica: ")
 
     def pegar_dados_alteracao(self):
+        # coleta os novos dados e devolve um dict pro controller
         print("Novos dados da clinica:")
         localizacao = input("Nova localizacao: ")
         descricao = input("Nova descricao: ")

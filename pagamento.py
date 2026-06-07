@@ -1,3 +1,6 @@
+# MODEL (entidade) abstrata. Base dos tres tipos de pagamento (Dinheiro/Pix/Cartao).
+# Abstrata (ABC) + forma() abstrato: nao se instancia Pagamento direto; cada
+# subclasse implementa forma() (polimorfismo).
 from abc import ABC, abstractmethod
 
 
@@ -42,4 +45,5 @@ class Pagamento(ABC):
 
     @abstractmethod
     def forma(self):
+        # cada subclasse devolve a forma de pagamento (ex.: "PIX")
         pass

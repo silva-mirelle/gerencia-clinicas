@@ -1,3 +1,5 @@
+# MODEL (entidade). ProfissionalSaude E-UM Pessoa (heranca) + especialidade e
+# registro profissional.
 from pessoa import Pessoa
 
 

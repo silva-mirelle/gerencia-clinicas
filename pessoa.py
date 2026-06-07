@@ -1,3 +1,6 @@
+# MODEL (entidade) abstrata. Base comum de Paciente e ProfissionalSaude.
+# E abstrata (ABC) + tem metodo abstrato papel(), entao Pessoa NAO pode ser
+# instanciada diretamente: cada subclasse e obrigada a implementar papel().
 from abc import ABC, abstractmethod
 
 
@@ -33,4 +36,5 @@ class Pessoa(ABC):
 
     @abstractmethod
     def papel(self):
+        # cada subclasse devolve seu papel (ex.: "Paciente") - polimorfismo
         pass

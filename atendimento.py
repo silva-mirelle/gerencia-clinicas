@@ -1,3 +1,5 @@
+# MODEL (entidade) central. Um Atendimento liga clinica + paciente + profissional
+# + tipo, com data/horario/valor. COMPOE procedimentos e AGREGA pagamentos.
 class Atendimento:
     def __init__(self, clinica, paciente, profissional, data,
                  horario_inicio, horario_fim, tipo_atendimento, valor):
@@ -9,8 +11,8 @@ class Atendimento:
         self.__horario_fim = horario_fim
         self.__tipo_atendimento = tipo_atendimento
         self.__valor = valor
-        self.__procedimentos = []
-        self.__pagamentos = []
+        self.__procedimentos = []  # procedimentos realizados neste atendimento
+        self.__pagamentos = []     # pagamentos (suporta parcelamento)
 
     @property
     def clinica(self):
@@ -91,5 +93,7 @@ class Atendimento:
         self.__pagamentos.append(pagamento)
 
     def calcular_valor_restante(self):
+        # quanto ainda falta pagar = valor total - soma do que ja foi pago
+        # (suporta pagamento parcial/parcelamento)
         total_pago = sum(p.valor_pago for p in self.__pagamentos)
         return self.__valor - total_pago

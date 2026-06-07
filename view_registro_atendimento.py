@@ -1,3 +1,5 @@
+# VIEW (Tela) do registro de atendimento (MVC).
+# So coleta texto do usuario e exibe mensagens; devolve as strings ao controller.
 class ViewRegistroAtendimento:
 
     def nome_clinica(self):
@@ -26,5 +28,6 @@ class ViewRegistroAtendimento:
         return input("Valor do atendimento: ")
 
     def aguardando_profissional(self):
+        # mensagem temporaria: o fluxo para aqui ate existir o cadastro de profissional
         print("Dados do atendimento coletados (clinica, paciente, data, horario, tipo).")
         print("Proximo passo: profissional - aguardando o modulo de cadastro de profissional.")

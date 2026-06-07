@@ -1,9 +1,10 @@
+# MODEL (entidade). Paciente E-UM Pessoa (heranca) + data de nascimento.
 from pessoa import Pessoa
 
 
 class Paciente(Pessoa):
     def __init__(self, nome, celular, cpf, data_nascimento):
-        super().__init__(nome, celular, cpf)
+        super().__init__(nome, celular, cpf)  # reaproveita nome/celular/cpf da Pessoa
         self.__data_nascimento = data_nascimento
 
     @property
