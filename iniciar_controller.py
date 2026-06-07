@@ -11,6 +11,7 @@ from cadastrar_tipo_atendimento_controller import CadastrarTipoAtendimentoContro
 from cadastrar_profissional_controller import CadastrarProfissionalController
 from registro_procedimento_controller import RegistroProcedimentoController
 from relatorio_controller import RelatorioController
+from registro_pagamento_controller import RegistroPagamentoController
 
 
 class IniciarController:
@@ -25,6 +26,7 @@ class IniciarController:
         self.__cadastrar_profissional_controller = CadastrarProfissionalController(self.__sistema_clinicas)
         self.__registro_procedimento_controller = RegistroProcedimentoController(self.__sistema_clinicas)
         self.__relatorio_controller = RelatorioController(self.__sistema_clinicas)
+        self.__registro_pagamento_controller = RegistroPagamentoController(self.__sistema_clinicas)
         # o controller de registro recebe o sistema + os controllers ja prontos
         self.__registro_atendimento_controller = RegistroAtendimentoController(
             self.__sistema_clinicas,
@@ -80,6 +82,10 @@ class IniciarController:
                 self.__relatorio_controller.procedimentos_mais_realizados()
             elif escolha == '21':
                 self.__relatorio_controller.procedimentos_caros_baratos()
+            elif escolha == '22':
+                self.__registro_pagamento_controller.registrar()
+            elif escolha == '23':
+                self.__registro_pagamento_controller.listar()
             elif escolha == '0':
                 break  # sai do laco -> metodo retorna -> programa encerra
             else:
