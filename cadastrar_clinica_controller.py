@@ -13,6 +13,7 @@ class CadastrarClinicaController:
         descricao = self.__view_cadastrar_clinica.descricao()
         clinica = Clinica(nome=nome, localizacao=localizacao, descricao=descricao)
         self.add_sistema(clinica)
+        return clinica
     
     def add_sistema(self, clinica):
         self.__sistema_clinicas.registrar_clinica(clinica)

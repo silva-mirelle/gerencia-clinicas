@@ -24,3 +24,7 @@ class ViewRegistroAtendimento:
 
     def valor(self):
         return input("Valor do atendimento: ")
+
+    def aguardando_profissional(self):
+        print("Dados do atendimento coletados (clinica, paciente, data, horario, tipo).")
+        print("Proximo passo: profissional - aguardando o modulo de cadastro de profissional.")

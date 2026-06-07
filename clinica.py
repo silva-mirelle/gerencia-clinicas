@@ -1,3 +1,5 @@
+from paciente import Paciente
+
 class Clinica:
     def __init__(self, nome, localizacao, descricao):
         self.__nome = nome
@@ -34,5 +36,5 @@ class Clinica:
         return self.__pacientes
     
     @pacientes.setter
-    def pacientes(self, paciente):
+    def pacientes(self, paciente: Paciente):
         self.__pacientes.append(paciente)
