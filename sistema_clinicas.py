@@ -52,3 +52,20 @@ class SistemaClinicas:
 
     def registrar_atendimento(self, atendimento):
         self.__atendimentos.append(atendimento)
+
+    # ---- RELATORIOS (so computacao sobre os dados; quem exibe e o controller/view) ----
+
+    def procedimentos_mais_realizados(self):
+        # conta os procedimentos por descricao em TODOS os atendimentos.
+        # retorna lista de (descricao, quantidade), da mais realizada pra menos.
+        contagem = {}
+        for atendimento in self.__atendimentos:
+            for procedimento in atendimento.procedimentos:
+                contagem[procedimento.descricao] = contagem.get(procedimento.descricao, 0) + 1
+        return sorted(contagem.items(), key=lambda item: item[1], reverse=True)
+
+    def procedimentos_por_custo(self):
+        # junta os procedimentos de todos os atendimentos e ordena por custo (crescente).
+        # o controller usa o primeiro (mais barato) e o ultimo (mais caro).
+        procedimentos = [p for a in self.__atendimentos for p in a.procedimentos]
+        return sorted(procedimentos, key=lambda p: p.custo)

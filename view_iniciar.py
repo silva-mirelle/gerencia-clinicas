@@ -24,6 +24,8 @@ class ViewIniciar:
         print("17 - Excluir profissional")
         print("18 - Registrar procedimento")
         print("19 - Listar procedimentos")
+        print("20 - Relatorio: procedimentos mais realizados")
+        print("21 - Relatorio: procedimentos mais caros e mais baratos")
         print("0 - Encerrar")
         return input("Escolha um numero: ")
 
