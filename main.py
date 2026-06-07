@@ -1,7 +1,7 @@
-from atendimento_controller import AtendimentoController
+from iniciar_controller import IniciarController
 
 def main():
-    controller = AtendimentoController()
+    controller = IniciarController()
     controller.iniciar_atendimento()
 
 if __name__ == "__main__":

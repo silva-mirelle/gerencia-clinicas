@@ -1,4 +1,4 @@
-class TelaAtendimento:
+class ViewIniciar:
     def menu(self):
         print("TELA DE ATENDIMENTO")
         print("1 - Registrar atendimento")
@@ -14,22 +14,3 @@ class TelaAtendimento:
 
     def invalida_atendimento(self):
         print("MENORES PRECISAM QUE UM RESPONSÁVEL REGISTRE O ATENDIMENTO")
-
-    def dados_registro_atendimento(self):
-        print("REGISTRO ATENDIMENTO")
-        clinica = input("Nome Clinica: ")
-        paciente = input("Nome Paciente: ")
-        profissional = input("Nome Profissional: ")
-        data = input("Data do atendimento: ")
-        horario_inicio = input("Horario inicio do atendimento: ")
-        horario_fim = input("Horario fim do atendimento: ")
-        tipo_atend = input("Tipo do atendimento: ")
-
-'''def dados_registro_atendimento(self):
-        print("REGISTRO ATENDIMENTO")
-        paciente = input("Nome Paciente: ")
-        profissional = input("Nome Profissional: ")
-        data = input("Data do atendimento: ")
-        horario_inicio = input("Horario inicio do atendimento: ")
-        horario_fim = input("Horario fim do atendimento: ")
-        tipo_atend = input("Tipo do atendimento: ")'''

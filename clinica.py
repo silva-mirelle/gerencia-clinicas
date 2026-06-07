@@ -3,6 +3,7 @@ class Clinica:
         self.__nome = nome
         self.__localizacao = localizacao
         self.__descricao = descricao
+        self.__pacientes = []
 
     @property
     def nome(self):
@@ -27,3 +28,11 @@ class Clinica:
     @descricao.setter
     def descricao(self, valor):
         self.__descricao = valor
+
+    @property
+    def pacientes(self):
+        return self.__pacientes
+    
+    @pacientes.setter
+    def pacientes(self, paciente):
+        self.__pacientes.append(paciente)
