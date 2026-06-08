@@ -40,3 +40,19 @@ class ViewRegistroProcedimento:
             print("Nenhum procedimento registrado.")
         for linha in linhas:
             print(f"- {linha}")
+
+    def selecionar_procedimento(self, linhas):
+        # procedimentos do atendimento, numerados; devolve o numero digitado
+        print("---- PROCEDIMENTOS DO ATENDIMENTO ----")
+        for i, linha in enumerate(linhas):
+            print(f"{i + 1} - {linha}")
+        return input("Numero do procedimento: ")
+
+    def sem_procedimentos(self):
+        print("Este atendimento nao tem procedimentos.")
+
+    def sucesso_alteracao(self):
+        print("Procedimento alterado com sucesso.")
+
+    def sucesso_exclusao(self):
+        print("Procedimento excluido com sucesso.")

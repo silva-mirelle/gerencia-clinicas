@@ -72,3 +72,44 @@ class RegistroProcedimentoController:
                 return float(self.__view_registro_procedimento.custo())
             except ValueError:
                 self.__view_registro_procedimento.erro_custo_invalido()
+
+    def alterar(self):
+        # ALTERAR: escolhe o atendimento -> escolhe o procedimento -> troca descricao/custo
+        atendimento = self.__selecionar_atendimento()
+        if atendimento is None:
+            return
+        procedimento = self.__selecionar_procedimento(atendimento)
+        if procedimento is None:
+            return
+        procedimento.descricao = self.__view_registro_procedimento.descricao()
+        procedimento.custo = self.__ler_custo()
+        self.__view_registro_procedimento.sucesso_alteracao()
+
+    def excluir(self):
+        # EXCLUIR: escolhe o atendimento -> escolhe o procedimento -> remove do atendimento
+        atendimento = self.__selecionar_atendimento()
+        if atendimento is None:
+            return
+        procedimento = self.__selecionar_procedimento(atendimento)
+        if procedimento is None:
+            return
+        atendimento.remover_procedimento(procedimento)
+        self.__view_registro_procedimento.sucesso_exclusao()
+
+    def __selecionar_procedimento(self, atendimento):
+        # selecao numerada dos procedimentos DAQUELE atendimento; objeto ou None
+        procedimentos = atendimento.procedimentos
+        if not procedimentos:
+            self.__view_registro_procedimento.sem_procedimentos()
+            return None
+        linhas = [f"{p.descricao} | custo: {p.custo} | prof: {p.profissional.nome}"
+                  for p in procedimentos]
+        escolha = self.__view_registro_procedimento.selecionar_procedimento(linhas)
+        if not escolha.isdigit():
+            self.__view_registro_procedimento.selecao_invalida()
+            return None
+        indice = int(escolha) - 1
+        if indice < 0 or indice >= len(procedimentos):
+            self.__view_registro_procedimento.selecao_invalida()
+            return None
+        return procedimentos[indice]

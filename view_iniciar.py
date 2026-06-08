@@ -31,6 +31,8 @@ class ViewIniciar:
         print("24 - Listar atendimentos")
         print("25 - Alterar atendimento")
         print("26 - Excluir atendimento")
+        print("27 - Alterar procedimento")
+        print("28 - Excluir procedimento")
         print("0 - Encerrar")
         return input("Escolha um numero: ")
 

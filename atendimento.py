@@ -85,6 +85,9 @@ class Atendimento:
     def adicionar_procedimento(self, procedimento):
         self.__procedimentos.append(procedimento)
 
+    def remover_procedimento(self, procedimento):
+        self.__procedimentos.remove(procedimento)
+
     @property
     def pagamentos(self):
         return self.__pagamentos
