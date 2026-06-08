@@ -87,3 +87,44 @@ class RegistroPagamentoController:
                 return float(self.__view_registro_pagamento.valor_pago())
             except ValueError:
                 self.__view_registro_pagamento.erro_valor_invalido()
+
+    def alterar(self):
+        # ALTERAR: escolhe atendimento -> escolhe pagamento -> troca data e valor.
+        # (campos da modalidade, ex.: cpf/cartao, ficam fixos pra simplificar.)
+        atendimento = self.__selecionar_atendimento()
+        if atendimento is None:
+            return
+        pagamento = self.__selecionar_pagamento(atendimento)
+        if pagamento is None:
+            return
+        pagamento.data = self.__view_registro_pagamento.data_pagamento()
+        pagamento.valor_pago = self.__ler_valor()
+        self.__view_registro_pagamento.sucesso_alteracao()
+
+    def excluir(self):
+        # EXCLUIR: escolhe atendimento -> escolhe pagamento -> remove do atendimento
+        atendimento = self.__selecionar_atendimento()
+        if atendimento is None:
+            return
+        pagamento = self.__selecionar_pagamento(atendimento)
+        if pagamento is None:
+            return
+        atendimento.remover_pagamento(pagamento)
+        self.__view_registro_pagamento.sucesso_exclusao()
+
+    def __selecionar_pagamento(self, atendimento):
+        # selecao numerada dos pagamentos DAQUELE atendimento; objeto ou None
+        pagamentos = atendimento.pagamentos
+        if not pagamentos:
+            self.__view_registro_pagamento.sem_pagamentos()
+            return None
+        linhas = [f"{p.forma()} | R$ {p.valor_pago} | data: {p.data}" for p in pagamentos]
+        escolha = self.__view_registro_pagamento.selecionar_pagamento(linhas)
+        if not escolha.isdigit():
+            self.__view_registro_pagamento.selecao_invalida()
+            return None
+        indice = int(escolha) - 1
+        if indice < 0 or indice >= len(pagamentos):
+            self.__view_registro_pagamento.selecao_invalida()
+            return None
+        return pagamentos[indice]

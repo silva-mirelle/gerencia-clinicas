@@ -95,6 +95,9 @@ class Atendimento:
     def adicionar_pagamento(self, pagamento):
         self.__pagamentos.append(pagamento)
 
+    def remover_pagamento(self, pagamento):
+        self.__pagamentos.remove(pagamento)
+
     def calcular_valor_restante(self):
         # quanto ainda falta pagar = valor total - soma do que ja foi pago
         # (suporta pagamento parcial/parcelamento)

@@ -52,3 +52,19 @@ class ViewRegistroPagamento:
             print("Nenhum pagamento registrado.")
         for linha in linhas:
             print(f"- {linha}")
+
+    def selecionar_pagamento(self, linhas):
+        # pagamentos do atendimento, numerados; devolve o numero digitado
+        print("---- PAGAMENTOS DO ATENDIMENTO ----")
+        for i, linha in enumerate(linhas):
+            print(f"{i + 1} - {linha}")
+        return input("Numero do pagamento: ")
+
+    def sem_pagamentos(self):
+        print("Este atendimento nao tem pagamentos.")
+
+    def sucesso_alteracao(self):
+        print("Pagamento alterado com sucesso.")
+
+    def sucesso_exclusao(self):
+        print("Pagamento excluido com sucesso.")
