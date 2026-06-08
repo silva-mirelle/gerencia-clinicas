@@ -3,6 +3,7 @@
 # do mesmo jeito que os tipos de atendimento.
 from view_cadastrar_profissional import ViewCadastrarProfissional
 from profissional_saude import ProfissionalSaude
+from validacao import ler_obrigatorio
 
 
 class CadastrarProfissionalController:
@@ -15,11 +16,14 @@ class CadastrarProfissionalController:
         # INCLUIR: coleta os campos, cria o ProfissionalSaude e guarda no sistema.
         # celular e cpf passam pela validacao de "somente numeros".
         self.__view_cadastrar_profissional.cabecalho_cadastro()
-        nome = self.__view_cadastrar_profissional.nome()
+        nome = ler_obrigatorio(self.__view_cadastrar_profissional.nome,
+                               self.__view_cadastrar_profissional.erro_campo_obrigatorio)
         celular = self.__ler_somente_numeros(self.__view_cadastrar_profissional.celular)
         cpf = self.__ler_somente_numeros(self.__view_cadastrar_profissional.cpf)
-        especialidade = self.__view_cadastrar_profissional.especialidade()
-        registro = self.__view_cadastrar_profissional.registro_profissional()
+        especialidade = ler_obrigatorio(self.__view_cadastrar_profissional.especialidade,
+                                        self.__view_cadastrar_profissional.erro_campo_obrigatorio)
+        registro = ler_obrigatorio(self.__view_cadastrar_profissional.registro_profissional,
+                                   self.__view_cadastrar_profissional.erro_campo_obrigatorio)
         profissional = ProfissionalSaude(nome, celular, cpf, especialidade, registro)
         self.__sistema_clinicas.registrar_profissional(profissional)
         return profissional

@@ -56,3 +56,6 @@ class ViewRegistroProcedimento:
 
     def sucesso_exclusao(self):
         print("Procedimento excluido com sucesso.")
+
+    def erro_campo_obrigatorio(self):
+        print("Campo obrigatorio: nao pode ficar vazio.")

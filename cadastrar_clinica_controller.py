@@ -3,6 +3,7 @@
 # e os guarda no SistemaClinicas compartilhado.
 from view_cadastrar_clinica import ViewCadastrarClinica
 from clinica import Clinica
+from validacao import ler_obrigatorio
 
 
 class CadastrarClinicaController:
@@ -15,8 +16,10 @@ class CadastrarClinicaController:
         # INCLUIR: o nome ja vem do fluxo de atendimento; pede o resto a tela,
         # cria a Clinica, guarda no sistema e devolve o objeto criado.
         nome = clinica_nome
-        localizacao = self.__view_cadastrar_clinica.localizacao()
-        descricao = self.__view_cadastrar_clinica.descricao()
+        localizacao = ler_obrigatorio(self.__view_cadastrar_clinica.localizacao,
+                                      self.__view_cadastrar_clinica.erro_campo_obrigatorio)
+        descricao = ler_obrigatorio(self.__view_cadastrar_clinica.descricao,
+                                    self.__view_cadastrar_clinica.erro_campo_obrigatorio)
         clinica = Clinica(nome=nome, localizacao=localizacao, descricao=descricao)
         self.add_sistema(clinica)
         return clinica

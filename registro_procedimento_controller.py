@@ -3,6 +3,7 @@
 # Fluxo: escolhe o atendimento -> coleta dados -> cria Procedimento -> adiciona nele.
 from view_registro_procedimento import ViewRegistroProcedimento
 from procedimento import Procedimento
+from validacao import ler_obrigatorio
 
 
 class RegistroProcedimentoController:
@@ -17,7 +18,8 @@ class RegistroProcedimentoController:
         atendimento = self.__selecionar_atendimento()
         if atendimento is None:
             return
-        descricao = self.__view_registro_procedimento.descricao()
+        descricao = ler_obrigatorio(self.__view_registro_procedimento.descricao,
+                                    self.__view_registro_procedimento.erro_campo_obrigatorio)
         custo = self.__ler_custo()
         profissional = self.__valida_profissional()
         if profissional is None:

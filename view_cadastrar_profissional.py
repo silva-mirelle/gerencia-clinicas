@@ -49,3 +49,6 @@ class ViewCadastrarProfissional:
 
     def sucesso_exclusao(self):
         print("Profissional excluido com sucesso.")
+
+    def erro_campo_obrigatorio(self):
+        print("Campo obrigatorio: nao pode ficar vazio.")

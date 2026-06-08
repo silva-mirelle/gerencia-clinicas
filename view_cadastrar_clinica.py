@@ -36,3 +36,6 @@ class ViewCadastrarClinica:
 
     def sucesso_exclusao(self):
         print("Clinica excluida com sucesso.")
+
+    def erro_campo_obrigatorio(self):
+        print("Campo obrigatorio: nao pode ficar vazio.")

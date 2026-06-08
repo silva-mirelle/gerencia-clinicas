@@ -5,6 +5,7 @@ from view_registro_atendimento import ViewRegistroAtendimento
 #from view_cadastrar_profissional import CadastrarProfissionalController
 from atendimento import Atendimento
 from tipo_atendimento import TipoAtendimento
+from validacao import ler_obrigatorio
 
 
 class RegistroAtendimentoController:
@@ -59,7 +60,8 @@ class RegistroAtendimentoController:
     def valida_clinica(self):
         # busca a clinica pelo nome digitado; se nao existir, cadastra na hora.
         # Sempre retorna o OBJETO Clinica (nao True), pois o atendimento precisa dele.
-        nome_clinica = self.__view_registro_atendimento.nome_clinica()
+        nome_clinica = ler_obrigatorio(self.__view_registro_atendimento.nome_clinica,
+                                       self.__view_registro_atendimento.erro_campo_obrigatorio)
         for clinica in self.__sistema_clinicas.clinicas:
             if nome_clinica == clinica.nome:
                 return clinica  # clinica ja existia (caminho feliz)
@@ -69,7 +71,8 @@ class RegistroAtendimentoController:
     def valida_paciente(self, clinica):
         # mesmo padrao da clinica: acha o paciente DENTRO da clinica ou cadastra.
         # Retorna o OBJETO Paciente.
-        nome_paciente = self.__view_registro_atendimento.nome_paciente()
+        nome_paciente = ler_obrigatorio(self.__view_registro_atendimento.nome_paciente,
+                                        self.__view_registro_atendimento.erro_campo_obrigatorio)
         for paciente in clinica.pacientes:
             if nome_paciente == paciente.nome:
                 return paciente
@@ -79,7 +82,8 @@ class RegistroAtendimentoController:
     def valida_profissional(self):
         # o profissional precisa JA estar cadastrado (cadastro e via menu, opcao 4).
         # procura pelo nome na lista global; retorna o OBJETO ou None se nao achar.
-        nome_profissional = self.__view_registro_atendimento.nome_profissional()
+        nome_profissional = ler_obrigatorio(self.__view_registro_atendimento.nome_profissional,
+                                            self.__view_registro_atendimento.erro_campo_obrigatorio)
         for profissional in self.__sistema_clinicas.profissionais:
             if nome_profissional == profissional.nome:
                 return profissional

@@ -2,6 +2,7 @@
 # TipoAtendimento e simples (so um nome); fica numa lista global no SistemaClinicas.
 from view_cadastrar_tipo_atendimento import ViewCadastrarTipoAtendimento
 from tipo_atendimento import TipoAtendimento
+from validacao import ler_obrigatorio
 
 
 class CadastrarTipoAtendimentoController:
@@ -12,7 +13,8 @@ class CadastrarTipoAtendimentoController:
 
     def cadastrar(self):
         # INCLUIR: pede o nome, cria o tipo, guarda no sistema e devolve o objeto
-        nome = self.__view_cadastrar_tipo.pegar_nome()
+        nome = ler_obrigatorio(self.__view_cadastrar_tipo.pegar_nome,
+                               self.__view_cadastrar_tipo.erro_campo_obrigatorio)
         tipo = TipoAtendimento(nome)
         self.__sistema_clinicas.registrar_tipo_atendimento(tipo)
         return tipo
