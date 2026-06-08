@@ -3,16 +3,16 @@
 # injeta em todos os controllers especificos (injecao de dependencia) para que
 # todos compartilhem o mesmo "banco de dados" em memoria.
 # O menu e em 2 niveis: menu principal (por area) -> submenu (acoes da area).
-from view_iniciar import ViewIniciar
-from registro_atendimento_controller import RegistroAtendimentoController
-from sistema_clinicas import SistemaClinicas
-from cadastrar_clinica_controller import CadastrarClinicaController
-from cadastrar_paciente_controller import CadastrarPacienteController
-from cadastrar_tipo_atendimento_controller import CadastrarTipoAtendimentoController
-from cadastrar_profissional_controller import CadastrarProfissionalController
-from registro_procedimento_controller import RegistroProcedimentoController
-from relatorio_controller import RelatorioController
-from registro_pagamento_controller import RegistroPagamentoController
+from views.view_iniciar import ViewIniciar
+from controllers.registro_atendimento_controller import RegistroAtendimentoController
+from models.sistema_clinicas import SistemaClinicas
+from controllers.cadastrar_clinica_controller import CadastrarClinicaController
+from controllers.cadastrar_paciente_controller import CadastrarPacienteController
+from controllers.cadastrar_tipo_atendimento_controller import CadastrarTipoAtendimentoController
+from controllers.cadastrar_profissional_controller import CadastrarProfissionalController
+from controllers.registro_procedimento_controller import RegistroProcedimentoController
+from controllers.relatorio_controller import RelatorioController
+from controllers.registro_pagamento_controller import RegistroPagamentoController
 
 
 class IniciarController:

@@ -1,8 +1,8 @@
 # CONTROLLER de cadastro de clinica (MVC) - CRUD completo de Clinica.
 # Pede dados a tela (ViewCadastrarClinica), cria/altera/remove objetos Clinica
 # e os guarda no SistemaClinicas compartilhado.
-from view_cadastrar_clinica import ViewCadastrarClinica
-from clinica import Clinica
+from views.view_cadastrar_clinica import ViewCadastrarClinica
+from models.clinica import Clinica
 from validacao import ler_obrigatorio
 
 

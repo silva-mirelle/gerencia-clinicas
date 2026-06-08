@@ -1,8 +1,8 @@
 # CONTROLLER de cadastro de profissional de saude (MVC) - CRUD completo.
 # Profissionais ficam numa lista global no SistemaClinicas (catalogo do sistema),
 # do mesmo jeito que os tipos de atendimento.
-from view_cadastrar_profissional import ViewCadastrarProfissional
-from profissional_saude import ProfissionalSaude
+from views.view_cadastrar_profissional import ViewCadastrarProfissional
+from models.profissional_saude import ProfissionalSaude
 from validacao import ler_obrigatorio
 
 

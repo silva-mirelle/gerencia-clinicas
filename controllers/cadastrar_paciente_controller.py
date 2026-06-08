@@ -1,8 +1,8 @@
 # CONTROLLER de cadastro de paciente (MVC) - CRUD completo de Paciente.
 # Pacientes ficam DENTRO de cada clinica (clinica.pacientes), nao em lista global;
 # por isso buscas/listagens varrem todas as clinicas do sistema.
-from view_cadastrar_paciente import ViewCadastrarPaciente
-from paciente import Paciente
+from views.view_cadastrar_paciente import ViewCadastrarPaciente
+from models.paciente import Paciente
 
 
 class CadastrarPacienteController:

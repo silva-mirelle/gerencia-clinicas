@@ -1,10 +1,10 @@
 # CONTROLLER de registro de atendimento (MVC).
 # Orquestra o fluxo de marcar um atendimento: valida/cadastra clinica e paciente,
 # valida o profissional, coleta os dados, cria o Atendimento e guarda no sistema.
-from view_registro_atendimento import ViewRegistroAtendimento
+from views.view_registro_atendimento import ViewRegistroAtendimento
 #from view_cadastrar_profissional import CadastrarProfissionalController
-from atendimento import Atendimento
-from tipo_atendimento import TipoAtendimento
+from models.atendimento import Atendimento
+from models.tipo_atendimento import TipoAtendimento
 from validacao import ler_obrigatorio
 
 

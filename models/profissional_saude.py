@@ -1,6 +1,6 @@
 # MODEL (entidade). ProfissionalSaude E-UM Pessoa (heranca) + especialidade e
 # registro profissional.
-from pessoa import Pessoa
+from models.pessoa import Pessoa
 
 
 class ProfissionalSaude(Pessoa):

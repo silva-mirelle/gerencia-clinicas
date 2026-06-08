@@ -1,6 +1,6 @@
 # MODEL. Pagamento em dinheiro - E-UM Pagamento (heranca).
 # Nao precisa de atributos extras; so implementa forma().
-from pagamento import Pagamento
+from models.pagamento import Pagamento
 
 
 class PagamentoDinheiro(Pagamento):

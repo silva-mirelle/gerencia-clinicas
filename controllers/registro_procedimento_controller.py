@@ -1,8 +1,8 @@
 # CONTROLLER de registro de procedimento (MVC).
 # Um procedimento e registrado DENTRO de um atendimento (atendimento.procedimentos).
 # Fluxo: escolhe o atendimento -> coleta dados -> cria Procedimento -> adiciona nele.
-from view_registro_procedimento import ViewRegistroProcedimento
-from procedimento import Procedimento
+from views.view_registro_procedimento import ViewRegistroProcedimento
+from models.procedimento import Procedimento
 from validacao import ler_obrigatorio
 
 

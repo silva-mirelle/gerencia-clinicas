@@ -1,7 +1,7 @@
 # CONTROLLER de cadastro de tipo de atendimento (MVC) - CRUD completo.
 # TipoAtendimento e simples (so um nome); fica numa lista global no SistemaClinicas.
-from view_cadastrar_tipo_atendimento import ViewCadastrarTipoAtendimento
-from tipo_atendimento import TipoAtendimento
+from views.view_cadastrar_tipo_atendimento import ViewCadastrarTipoAtendimento
+from models.tipo_atendimento import TipoAtendimento
 from validacao import ler_obrigatorio
 
 

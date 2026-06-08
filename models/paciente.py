@@ -1,5 +1,5 @@
 # MODEL (entidade). Paciente E-UM Pessoa (heranca) + data de nascimento.
-from pessoa import Pessoa
+from models.pessoa import Pessoa
 
 
 class Paciente(Pessoa):

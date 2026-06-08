@@ -2,10 +2,10 @@
 # Pagamentos sao registrados DENTRO de um atendimento. Suporta 3 modalidades
 # (Dinheiro/PIX/Cartao) e PARCELAMENTO: cada pagamento parcial soma, e o
 # calcular_valor_restante (no model Atendimento) mostra quanto ainda falta.
-from view_registro_pagamento import ViewRegistroPagamento
-from pagamento_dinheiro import PagamentoDinheiro
-from pagamento_pix import PagamentoPix
-from pagamento_cartao import PagamentoCartao
+from views.view_registro_pagamento import ViewRegistroPagamento
+from models.pagamento_dinheiro import PagamentoDinheiro
+from models.pagamento_pix import PagamentoPix
+from models.pagamento_cartao import PagamentoCartao
 
 
 class RegistroPagamentoController:

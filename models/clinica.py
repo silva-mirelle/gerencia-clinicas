@@ -1,6 +1,6 @@
 # MODEL (entidade). Clinica tem nome/localizacao/descricao e AGREGA pacientes
 # (a lista de pacientes vive dentro da clinica).
-from paciente import Paciente
+from models.paciente import Paciente
 
 
 class Clinica:

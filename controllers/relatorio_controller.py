@@ -1,7 +1,7 @@
 # CONTROLLER de relatorios (MVC).
 # A CONTA fica no SistemaClinicas; aqui so pedimos o dado, formatamos as linhas
 # e mandamos a ViewRelatorio exibir. (Por enquanto os 2 relatorios de procedimento.)
-from view_relatorio import ViewRelatorio
+from views.view_relatorio import ViewRelatorio
 
 
 class RelatorioController:

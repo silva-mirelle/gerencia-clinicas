@@ -1,6 +1,6 @@
 # MODEL. Pagamento via cartao de credito - E-UM Pagamento (heranca) + numero do
 # cartao e bandeira.
-from pagamento import Pagamento
+from models.pagamento import Pagamento
 
 
 class PagamentoCartao(Pagamento):
