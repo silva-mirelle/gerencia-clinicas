@@ -100,6 +100,10 @@ class IniciarController:
                 self.__registro_pagamento_controller.alterar()
             elif escolha == '30':
                 self.__registro_pagamento_controller.excluir()
+            elif escolha == '31':
+                self.__relatorio_controller.clinicas_mais_atendimentos()
+            elif escolha == '32':
+                self.__relatorio_controller.atendimentos_caros_baratos()
             elif escolha == '0':
                 break  # sai do laco -> metodo retorna -> programa encerra
             else:

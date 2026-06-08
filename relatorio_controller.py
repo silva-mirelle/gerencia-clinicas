@@ -29,3 +29,23 @@ class RelatorioController:
             f"Mais barato: {mais_barato.descricao} (R$ {mais_barato.custo})",
         ]
         self.__view_relatorio.mostrar_relatorio("PROCEDIMENTOS MAIS CAROS E MAIS BARATOS", linhas)
+
+    def clinicas_mais_atendimentos(self):
+        # (descricao, quantidade) ja ordenado por numero de atendimentos
+        dados = self.__sistema_clinicas.clinicas_por_numero_atendimentos()
+        linhas = [f"{nome}: {quantidade} atendimento(s)" for nome, quantidade in dados]
+        self.__view_relatorio.mostrar_relatorio("CLINICAS COM MAIS ATENDIMENTOS", linhas)
+
+    def atendimentos_caros_baratos(self):
+        # lista ordenada por valor -> primeiro = mais barato, ultimo = mais caro
+        atendimentos = self.__sistema_clinicas.atendimentos_por_valor()
+        if not atendimentos:
+            self.__view_relatorio.mostrar_relatorio("ATENDIMENTOS MAIS CAROS E MAIS BARATOS", [])
+            return
+        mais_barato = atendimentos[0]
+        mais_caro = atendimentos[-1]
+        linhas = [
+            f"Mais caro:   {mais_caro.paciente.nome} em {mais_caro.clinica.nome} (R$ {mais_caro.valor})",
+            f"Mais barato: {mais_barato.paciente.nome} em {mais_barato.clinica.nome} (R$ {mais_barato.valor})",
+        ]
+        self.__view_relatorio.mostrar_relatorio("ATENDIMENTOS MAIS CAROS E MAIS BARATOS", linhas)

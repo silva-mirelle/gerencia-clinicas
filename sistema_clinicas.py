@@ -72,3 +72,17 @@ class SistemaClinicas:
         # o controller usa o primeiro (mais barato) e o ultimo (mais caro).
         procedimentos = [p for a in self.__atendimentos for p in a.procedimentos]
         return sorted(procedimentos, key=lambda p: p.custo)
+
+    def clinicas_por_numero_atendimentos(self):
+        # conta quantos atendimentos cada clinica tem (via atendimento.clinica).
+        # retorna lista de (nome_clinica, quantidade), da que tem mais pra menos.
+        contagem = {}
+        for atendimento in self.__atendimentos:
+            nome = atendimento.clinica.nome
+            contagem[nome] = contagem.get(nome, 0) + 1
+        return sorted(contagem.items(), key=lambda item: item[1], reverse=True)
+
+    def atendimentos_por_valor(self):
+        # atendimentos ordenados por valor (crescente).
+        # o controller usa o primeiro (mais barato) e o ultimo (mais caro).
+        return sorted(self.__atendimentos, key=lambda a: a.valor)

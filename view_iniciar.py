@@ -35,6 +35,8 @@ class ViewIniciar:
         print("28 - Excluir procedimento")
         print("29 - Alterar pagamento")
         print("30 - Excluir pagamento")
+        print("31 - Relatorio: clinicas com mais atendimentos")
+        print("32 - Relatorio: atendimentos mais caros e mais baratos")
         print("0 - Encerrar")
         return input("Escolha um numero: ")
 
