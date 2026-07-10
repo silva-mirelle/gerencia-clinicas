@@ -117,6 +117,7 @@ class RegistroAtendimentoController:
         atendimento.horario_inicio = self.__view_registro_atendimento.horario_inicio()
         atendimento.horario_fim = self.__view_registro_atendimento.horario_fim()
         atendimento.valor = self.__ler_valor()
+        self.__sistema_clinicas.atualizar_atendimento(atendimento)  # re-persiste
         self.__view_registro_atendimento.sucesso_alteracao()
 
     def excluir(self):

@@ -2,7 +2,9 @@
 # + tipo, com data/horario/valor. COMPOE procedimentos e AGREGA pagamentos.
 class Atendimento:
     def __init__(self, clinica, paciente, profissional, data,
-                 horario_inicio, horario_fim, tipo_atendimento, valor):
+                 horario_inicio, horario_fim, tipo_atendimento, valor, codigo=None):
+        # codigo e a chave de persistencia (artificial); atribuido pelo DAO
+        self.__codigo = codigo
         self.__clinica = clinica
         self.__paciente = paciente
         self.__profissional = profissional
@@ -13,6 +15,14 @@ class Atendimento:
         self.__valor = valor
         self.__procedimentos = []  # procedimentos realizados neste atendimento
         self.__pagamentos = []     # pagamentos (suporta parcelamento)
+
+    @property
+    def codigo(self):
+        return self.__codigo
+
+    @codigo.setter
+    def codigo(self, valor):
+        self.__codigo = valor
 
     @property
     def clinica(self):

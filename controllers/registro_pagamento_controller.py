@@ -26,6 +26,7 @@ class RegistroPagamentoController:
         if pagamento is None:
             return  # modalidade invalida
         atendimento.adicionar_pagamento(pagamento)
+        self.__sistema_clinicas.atualizar_atendimento(atendimento)  # re-persiste
         # parcelamento: mostra quanto ainda falta pagar do atendimento
         restante = atendimento.calcular_valor_restante()
         self.__view_registro_pagamento.sucesso(restante)
@@ -99,6 +100,7 @@ class RegistroPagamentoController:
             return
         pagamento.data = self.__view_registro_pagamento.data_pagamento()
         pagamento.valor_pago = self.__ler_valor()
+        self.__sistema_clinicas.atualizar_atendimento(atendimento)  # re-persiste
         self.__view_registro_pagamento.sucesso_alteracao()
 
     def excluir(self):
@@ -110,6 +112,7 @@ class RegistroPagamentoController:
         if pagamento is None:
             return
         atendimento.remover_pagamento(pagamento)
+        self.__sistema_clinicas.atualizar_atendimento(atendimento)  # re-persiste
         self.__view_registro_pagamento.sucesso_exclusao()
 
     def __selecionar_pagamento(self, atendimento):

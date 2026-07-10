@@ -19,6 +19,8 @@ class CadastrarPacienteController:
         data_nascimento = self.__ler_somente_numeros(self.__view_cadastrar_paciente.data_nascimento)
         paciente = Paciente(nome_paciente, celular, cpf, data_nascimento)
         clinica.pacientes = paciente  # setter da Clinica faz o append na lista
+        # paciente vive DENTRO da clinica -> re-persiste a clinica pra grava-lo
+        self.__sistema_clinicas.atualizar_clinica(clinica)
         return paciente
 
     def __ler_somente_numeros(self, metodo_view):
@@ -43,14 +45,15 @@ class CadastrarPacienteController:
 
     def alterar(self):
         # ALTERAR: acha o paciente e atualiza os campos numericos (revalidados).
-        # So precisamos do paciente aqui, entao ignoramos a clinica do retorno (_).
+        # Precisamos da clinica (dona do paciente) para re-persistir a alteracao.
         resultado = self.__buscar_paciente()
         if resultado is None:
             return
-        _, paciente = resultado
+        clinica, paciente = resultado
         paciente.celular = self.__ler_somente_numeros(self.__view_cadastrar_paciente.celular)
         paciente.cpf = self.__ler_somente_numeros(self.__view_cadastrar_paciente.cpf)
         paciente.data_nascimento = self.__ler_somente_numeros(self.__view_cadastrar_paciente.data_nascimento)
+        self.__sistema_clinicas.atualizar_clinica(clinica)  # re-persiste
         self.__view_cadastrar_paciente.sucesso_alteracao()
 
     def excluir(self):
@@ -60,6 +63,7 @@ class CadastrarPacienteController:
             return
         clinica, paciente = resultado
         clinica.remover_paciente(paciente)
+        self.__sistema_clinicas.atualizar_clinica(clinica)  # re-persiste
         self.__view_cadastrar_paciente.sucesso_exclusao()
 
     def __buscar_paciente(self):

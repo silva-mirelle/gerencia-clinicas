@@ -30,6 +30,7 @@ class CadastrarTipoAtendimentoController:
         if tipo is None:
             return
         tipo.nome = self.__view_cadastrar_tipo.novo_nome()
+        self.__sistema_clinicas.atualizar_tipo_atendimento(tipo)  # re-persiste
         self.__view_cadastrar_tipo.sucesso_alteracao()
 
     def excluir(self):
