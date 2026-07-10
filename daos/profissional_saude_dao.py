@@ -1,13 +1,9 @@
-# DAO de ProfissionalSaude: indexa por 'cpf' (chave natural, informada no
-# cadastro) - catalogo global, cpf unico no sistema.
-from daos.dao import DAO
+# DAO de ProfissionalSaude: config do GenericDAO. Indexa por 'cpf' (chave
+# natural, informada no cadastro) - catalogo global, cpf unico no sistema.
+from daos.generic_dao import GenericDAO
 from models.profissional_saude import ProfissionalSaude
 
 
-class ProfissionalSaudeDAO(DAO):
+class ProfissionalSaudeDAO(GenericDAO):
     def __init__(self):
-        super().__init__('profissionais.pkl')
-
-    def add(self, profissional):
-        if isinstance(profissional, ProfissionalSaude):
-            super().add(profissional.cpf, profissional)
+        super().__init__('profissionais.pkl', ProfissionalSaude, 'cpf')

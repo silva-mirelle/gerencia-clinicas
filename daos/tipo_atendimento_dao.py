@@ -1,14 +1,8 @@
-# DAO de TipoAtendimento: indexa por 'codigo' (chave artificial sequencial).
-from daos.dao import DAO
+# DAO de TipoAtendimento: config do GenericDAO. Indexa por 'codigo' (artificial).
+from daos.generic_dao import GenericDAO
 from models.tipo_atendimento import TipoAtendimento
 
 
-class TipoAtendimentoDAO(DAO):
+class TipoAtendimentoDAO(GenericDAO):
     def __init__(self):
-        super().__init__('tipos_atendimento.pkl')
-
-    def add(self, tipo_atendimento):
-        if isinstance(tipo_atendimento, TipoAtendimento):
-            if tipo_atendimento.codigo is None:
-                tipo_atendimento.codigo = self._proximo_codigo()
-            super().add(tipo_atendimento.codigo, tipo_atendimento)
+        super().__init__('tipos_atendimento.pkl', TipoAtendimento, 'codigo', auto_code=True)
