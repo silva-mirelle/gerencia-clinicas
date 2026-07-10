@@ -4,11 +4,22 @@ from models.paciente import Paciente
 
 
 class Clinica:
-    def __init__(self, nome, localizacao, descricao):
+    def __init__(self, nome, localizacao, descricao, codigo=None):
+        # codigo e a chave de persistencia (artificial). Nasce None e e
+        # atribuido pelo ClinicaDAO no momento do cadastro.
+        self.__codigo = codigo
         self.__nome = nome
         self.__localizacao = localizacao
         self.__descricao = descricao
         self.__pacientes = []  # pacientes cadastrados nesta clinica
+
+    @property
+    def codigo(self):
+        return self.__codigo
+
+    @codigo.setter
+    def codigo(self, valor):
+        self.__codigo = valor
 
     @property
     def nome(self):

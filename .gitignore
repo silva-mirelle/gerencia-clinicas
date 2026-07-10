@@ -1,3 +1,6 @@
 # Bytecode e cache do Python
 __pycache__/
 *.pyc
+
+# Dados serializados (persistencia via pickle - runtime, nao fonte)
+*.pkl

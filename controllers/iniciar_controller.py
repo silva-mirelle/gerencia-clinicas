@@ -222,4 +222,4 @@ class IniciarController:
 
     def valida_idade(self, idade: int):
         # regra de negocio: so maior de 18 pode atendimento independente
-        return idade > 18
+        return idade >= 18

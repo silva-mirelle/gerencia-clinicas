@@ -45,6 +45,7 @@ class CadastrarProfissionalController:
         dados = self.__view_cadastrar_profissional.pegar_dados_alteracao()
         profissional.especialidade = dados["especialidade"]
         profissional.registro_profissional = dados["registro_profissional"]
+        self.__sistema_clinicas.atualizar_profissional(profissional)  # re-persiste
         self.__view_cadastrar_profissional.sucesso_alteracao()
 
     def excluir(self):

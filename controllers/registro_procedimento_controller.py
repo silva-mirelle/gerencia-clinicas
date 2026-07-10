@@ -27,6 +27,7 @@ class RegistroProcedimentoController:
             return
         procedimento = Procedimento(descricao, custo, profissional)
         atendimento.adicionar_procedimento(procedimento)
+        self.__sistema_clinicas.atualizar_atendimento(atendimento)  # re-persiste
         self.__view_registro_procedimento.sucesso()
 
     def listar(self):
@@ -85,6 +86,7 @@ class RegistroProcedimentoController:
             return
         procedimento.descricao = self.__view_registro_procedimento.descricao()
         procedimento.custo = self.__ler_custo()
+        self.__sistema_clinicas.atualizar_atendimento(atendimento)  # re-persiste
         self.__view_registro_procedimento.sucesso_alteracao()
 
     def excluir(self):
@@ -96,6 +98,7 @@ class RegistroProcedimentoController:
         if procedimento is None:
             return
         atendimento.remover_procedimento(procedimento)
+        self.__sistema_clinicas.atualizar_atendimento(atendimento)  # re-persiste
         self.__view_registro_procedimento.sucesso_exclusao()
 
     def __selecionar_procedimento(self, atendimento):

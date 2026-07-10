@@ -42,6 +42,7 @@ class CadastrarClinicaController:
         dados = self.__view_cadastrar_clinica.pegar_dados_alteracao()
         clinica.localizacao = dados["localizacao"]
         clinica.descricao = dados["descricao"]
+        self.__sistema_clinicas.atualizar_clinica(clinica)  # re-persiste
         self.__view_cadastrar_clinica.sucesso_alteracao()
 
     def excluir(self):
